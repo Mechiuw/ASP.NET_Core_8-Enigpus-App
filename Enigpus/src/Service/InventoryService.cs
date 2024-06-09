@@ -5,6 +5,6 @@ interface INventoryService
     NovelResponse Create(NovelRequest novelRequest);
     NovelResponse GetById(String Id);
     List<Novel> GetAll();
-    Novel Update(String Id);
+    NovelResponse Update(String Id,NovelRequest novelRequest);
     void Delete(String Id);
 }

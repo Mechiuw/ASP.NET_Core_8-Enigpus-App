@@ -52,7 +52,7 @@ class InventoryServiceImpl : INventoryService
         return [];
     }
 
-    public Novel Update(String Id)
+    public NovelResponse Update(String Id,NovelRequest novelRequest)
     {
         return null;
     }
