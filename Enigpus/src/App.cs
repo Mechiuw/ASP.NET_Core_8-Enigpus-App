@@ -2,7 +2,7 @@ using System;
 
 class App
 {
-    static void Run()
+    public static void Run()
     {
         InventoryServiceImpl serviceImpl = new();
         InventoryControllerImpl impl = new(serviceImpl);
