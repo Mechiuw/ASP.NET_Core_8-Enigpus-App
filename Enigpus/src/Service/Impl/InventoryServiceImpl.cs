@@ -12,7 +12,6 @@ class InventoryServiceImpl : INventoryService
         this._novelRepo = [];
     }
 
-    // ================= NOVEL SERVICE LAYER ==================
     public List<Novel> NovelRepo
     {
         get { return _novelRepo; }
@@ -23,6 +22,8 @@ class InventoryServiceImpl : INventoryService
         get { return _magazineRepo; }
     }
     
+    // ================= NOVEL SERVICE LAYER ==================
+
     public NovelResponse Create(NovelRequest novelRequest)
     {
         Novel novel = new(
