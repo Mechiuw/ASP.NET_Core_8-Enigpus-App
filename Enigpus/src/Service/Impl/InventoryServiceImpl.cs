@@ -4,9 +4,11 @@ class InventoryServiceImpl : INventoryService
 {
 
     private readonly List<Novel> _novelRepo;
+    private readonly List<Magazine> _magazineRepo;
 
     public InventoryServiceImpl()
     {
+        this._magazineRepo = [];
         this._novelRepo = [];
     }
 
@@ -14,6 +16,12 @@ class InventoryServiceImpl : INventoryService
     {
         get { return _novelRepo; }
     }
+
+    public List<Magazine> MagazineRepo
+    {
+        get { return _magazineRepo; }
+    }
+    
     public NovelResponse Create(NovelRequest novelRequest)
     {
         Novel novel = new(
@@ -85,4 +93,6 @@ class InventoryServiceImpl : INventoryService
             throw new Exception(String.Format("couldn't find any novel with id : {0}",Id));
         }
     }
+
+    
 }
