@@ -65,21 +65,18 @@ class InventoryServiceImpl : INventoryService
     {
         Novel foundNovel = _novelRepo.FirstOrDefault(x => x.Id == Id);
         if(foundNovel != null){
-            Novel saveNovel = new(
+            foundNovel.Id = novelRequest.Id;
+            foundNovel.Title = novelRequest.Title;
+            foundNovel.Author = novelRequest.Author;
+            foundNovel.Year = novelRequest.Year;
+            foundNovel.Writer = novelRequest.Writer;
+            return new NovelResponse(
                 foundNovel.Id,
                 foundNovel.Title,
                 foundNovel.Author,
                 foundNovel.Year,
                 foundNovel.Writer
             );
-            _novelRepo.Add(saveNovel);
-            return new NovelResponse(
-                saveNovel.Id,
-                saveNovel.Title,
-                saveNovel.Author,
-                saveNovel.Year,
-                saveNovel.Writer
-            );     
         } else {
             throw new Exception(String.Format("couldn't find any novel with id : {0}",Id));
         }
