@@ -139,7 +139,7 @@ class InventoryServiceImpl : INventoryService
             foundMagazine.Title = magazineRequest.Title;
             foundMagazine.Author = magazineRequest.Author;
             foundMagazine.Year = magazineRequest.Year;
-            
+
             return new MagazineResponse(
                 foundMagazine.Id,
                 foundMagazine.Title,
@@ -153,7 +153,12 @@ class InventoryServiceImpl : INventoryService
     }
 
     public void MagDelete(string Id){
-
+        Magazine magazine = _magazineRepo.FirstOrDefault(x => x.Id == Id);
+        if(magazine != null){
+            _magazineRepo.Remove(magazine);
+        } else {
+            throw new Exception(String.Format("couldn't find any magazine with id : {0}",Id));
+        }
     }
 
 }
