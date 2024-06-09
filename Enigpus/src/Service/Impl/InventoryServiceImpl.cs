@@ -12,6 +12,7 @@ class InventoryServiceImpl : INventoryService
         this._novelRepo = [];
     }
 
+    // ================= NOVEL SERVICE LAYER ==================
     public List<Novel> NovelRepo
     {
         get { return _novelRepo; }
@@ -94,5 +95,26 @@ class InventoryServiceImpl : INventoryService
         }
     }
 
-    
+    // ================= MAGAZINE SERVICE LAYER ==================
+
+    public MagazineResponse MagCreate(MagazineRequest magazineRequest){
+        return null;
+    }
+
+    public MagazineResponse MagGetById(string Id){
+        return null;
+    }
+
+    public List<Magazine> MagGetAll(){
+        return [];
+    }
+
+    public MagazineResponse MagUpdate(string Id,MagazineRequest magazineRequest){
+        return null;
+    }
+
+    public void MagDelete(string Id){
+        
+    }
+
 }
