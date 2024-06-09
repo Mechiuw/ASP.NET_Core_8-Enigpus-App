@@ -98,7 +98,20 @@ class InventoryServiceImpl : INventoryService
     // ================= MAGAZINE SERVICE LAYER ==================
 
     public MagazineResponse MagCreate(MagazineRequest magazineRequest){
-        return null;
+        Magazine magazine = new(
+            magazineRequest.Id,
+            magazineRequest.Title,
+            magazineRequest.Author,
+            magazineRequest.Year
+        );
+
+        _magazineRepo.Add(magazine);
+        return new MagazineResponse(
+            magazine.Id,
+            magazine.Title,
+            magazine.Author,
+            magazine.Year
+        );
     }
 
     public MagazineResponse MagGetById(string Id){
