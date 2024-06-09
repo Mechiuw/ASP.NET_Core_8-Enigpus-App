@@ -16,14 +16,35 @@ class InventoryServiceImpl : INventoryService
     }
     public NovelResponse Create(NovelRequest novelRequest)
     {
-        Novel novel = new Novel(
+        Novel novel = new(
             novelRequest.Id,
-            novelRequest.Title);
-        return null;
+            novelRequest.Title,
+            novelRequest.Author,
+            novelRequest.Year,
+            novelRequest.Writer);
+        _novelRepo.Add(novel);
+
+        return new NovelResponse(
+            novel.Id,
+            novel.Title,
+            novel.Author,
+            novel.Year,
+            novel.Writer);
     }
-    public Novel GetById(String Id)
+    public NovelResponse GetById(String Id)
     {
-        return null;
+        Novel foundNovel = _novelRepo.FirstOrDefault(x => x.Id == Id);
+        if(foundNovel != null){
+            return new NovelResponse(
+                foundNovel.Id,
+                foundNovel.Title,
+                foundNovel.Author,
+                foundNovel.Year,
+                foundNovel.Writer
+            );
+        } else {
+            throw new Exception(String.Format("couldn't find any novel with id : {0}",Id));
+        }
     }
 
     public List<Novel> GetAll()
