@@ -60,20 +60,40 @@ class InventoryControllerImpl : INventoryControllerInterface
 
     public void GetAllBook(string choice)
     {
-        if(choice != null){
-            if(choice == "A"){
-                _service.GetAll();
-            }
-            if(choice == "B"){
-                _service.MagGetAll();
-            }
-        } else {
+        if(choice != null && choice == "A"){
+            _service.GetAll();
+        } 
+
+        if(choice != null && choice == "B"){
+            _service.MagGetAll();
+        }
+        else {
             throw new Exception(String.Format("cant do with choice is empty"));
         }
     }
 
-    public void SearchBook()
+    public void SearchBook(string choice)
     {
-        throw new NotImplementedException();
+        if(choice != null && choice == "A"){
+            try{
+                Console.WriteLine("insert the novel id");
+                string Id = Console.ReadLine();
+                _service.GetById(Id);
+            } catch (Exception e){
+                Console.WriteLine(e.Data);
+            }
+        }
+        if(choice != null && choice == "B"){
+            try{
+                Console.WriteLine("insert the magazine id");
+                string Id = Console.ReadLine();
+                _service.MagGetById(Id);
+            } catch (Exception e){
+                Console.WriteLine(e.Data);
+            }
+        } 
+        else {
+            throw new Exception(String.Format("cant do with choice is empty or wrong input"));
+        }
     }
 }
