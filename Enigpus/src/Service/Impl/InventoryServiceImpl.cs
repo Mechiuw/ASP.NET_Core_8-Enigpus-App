@@ -72,12 +72,17 @@ class InventoryServiceImpl : INventoryService
                 saveNovel.Writer
             );     
         } else {
-            throw new Exception(String.Format("couldn't found any novel with id : {0}",Id));
+            throw new Exception(String.Format("couldn't find any novel with id : {0}",Id));
         }
     }
 
     public void Delete(String Id)
     {
-
+        Novel foundNovel = _novelRepo.FirstOrDefault(x => x.Id == Id);
+        if(foundNovel != null){
+            _novelRepo.Remove(foundNovel);
+        } else {
+            throw new Exception(String.Format("couldn't find any novel with id : {0}",Id));
+        }
     }
 }
