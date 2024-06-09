@@ -49,12 +49,31 @@ class InventoryServiceImpl : INventoryService
 
     public List<Novel> GetAll()
     {
-        return [];
+        return [.. _novelRepo];
     }
 
-    public NovelResponse Update(String Id,NovelRequest novelRequest)
+    public NovelResponse Update(string Id,NovelRequest novelRequest)
     {
-        return null;
+        Novel foundNovel = _novelRepo.FirstOrDefault(x => x.Id == Id);
+        if(foundNovel != null){
+            Novel saveNovel = new(
+                foundNovel.Id,
+                foundNovel.Title,
+                foundNovel.Author,
+                foundNovel.Year,
+                foundNovel.Writer
+            );
+            _novelRepo.Add(saveNovel);
+            return new NovelResponse(
+                saveNovel.Id,
+                saveNovel.Title,
+                saveNovel.Author,
+                saveNovel.Year,
+                saveNovel.Writer
+            );     
+        } else {
+            throw new Exception(String.Format("couldn't found any novel with id : {0}",Id));
+        }
     }
 
     public void Delete(String Id)
