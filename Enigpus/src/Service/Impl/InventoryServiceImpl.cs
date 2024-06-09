@@ -129,11 +129,27 @@ class InventoryServiceImpl : INventoryService
     }
 
     public List<Magazine> MagGetAll(){
-        return [];
+        return [.. _magazineRepo];
     }
 
     public MagazineResponse MagUpdate(string Id,MagazineRequest magazineRequest){
-        return null;
+        Magazine foundMagazine = _magazineRepo.FirstOrDefault(x => x.Id == Id);
+        if(foundMagazine != null){
+            foundMagazine.Id = magazineRequest.Id;
+            foundMagazine.Title = magazineRequest.Title;
+            foundMagazine.Author = magazineRequest.Author;
+            foundMagazine.Year = magazineRequest.Year;
+            
+            return new MagazineResponse(
+                foundMagazine.Id,
+                foundMagazine.Title,
+                foundMagazine.Author,
+                foundMagazine.Year
+            );
+            
+        } else {
+            throw new Exception(String.Format("couldn't find any magazine with id : {0}",Id));
+        }
     }
 
     public void MagDelete(string Id){
