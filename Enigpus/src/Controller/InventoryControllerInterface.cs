@@ -1,6 +1,6 @@
 interface INventoryControllerInterface 
 {
-    void AddBook();
-    void SearchBook();
+    void AddBook(String choice);
+    void SearchBook(String choice);
     void GetAllBook();
 }
