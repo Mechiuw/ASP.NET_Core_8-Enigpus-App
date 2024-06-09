@@ -115,7 +115,17 @@ class InventoryServiceImpl : INventoryService
     }
 
     public MagazineResponse MagGetById(string Id){
-        return null;
+        Magazine foundMagazine = _magazineRepo.FirstOrDefault(x => x.Id == Id);
+        if(foundMagazine != null){
+            return new MagazineResponse(
+                foundMagazine.Id,
+                foundMagazine.Title,
+                foundMagazine.Author,
+                foundMagazine.Year
+            );
+        } else {
+            throw new Exception(String.Format("couldn't find any magazine with id : {0}",Id));
+        }
     }
 
     public List<Magazine> MagGetAll(){
@@ -127,7 +137,7 @@ class InventoryServiceImpl : INventoryService
     }
 
     public void MagDelete(string Id){
-        
+
     }
 
 }
