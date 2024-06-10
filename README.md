@@ -5,7 +5,6 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
-- [Running the Application](#running-the-application)
 - [Usage](#usage)
 
 ## Overview
