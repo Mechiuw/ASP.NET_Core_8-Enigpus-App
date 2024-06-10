@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 class InventoryControllerImpl : INventoryControllerInterface
 {
     private readonly INventoryService _service;
@@ -66,11 +68,11 @@ class InventoryControllerImpl : INventoryControllerInterface
         var books = _service.GetAll() ?? throw new Exception("GetAll() returned null");
             books.ForEach(book =>
         {
-            Console.WriteLine(book.Id);
-            Console.WriteLine(book.Title);
-            Console.WriteLine(book.Author);
-            Console.WriteLine(book.Year);
-            Console.WriteLine(book.Writer);
+            Console.Write($"Book Id ={book.Id}");
+            Console.Write($"Book Title ={book.Title}");
+            Console.Write($"Book Author ={book.Author}");
+            Console.Write($"Book Year={book.Year}");
+            Console.Write($"Book Writer={book.Writer}");
         });
     }
 
@@ -79,10 +81,10 @@ class InventoryControllerImpl : INventoryControllerInterface
         var magazines = _service.MagGetAll() ?? throw new Exception("MagGetAll() returned null");
             magazines.ForEach(magazine =>
         {
-            Console.WriteLine(magazine.Id);
-            Console.WriteLine(magazine.Title);
-            Console.WriteLine(magazine.Author);
-            Console.WriteLine(magazine.Year);
+            Console.Write($"Magazine Id ={magazine.Id}");
+            Console.Write($"Magazine Title ={magazine.Title}");
+            Console.Write($"Magazine Author ={magazine.Author}");
+            Console.Write($"Magazine Year ={magazine.Year}");
         });
     }
         else {
@@ -92,20 +94,29 @@ class InventoryControllerImpl : INventoryControllerInterface
 
     public void SearchBook(string choice)
     {
-        if(choice != null && choice == "A"){
+        if(choice == "A"){
             try{
                 Console.WriteLine("insert the novel id");
                 string Id = Console.ReadLine();
-                _service.GetById(Id);
+                NovelResponse novelResponse = _service.GetById(Id);
+                Console.Write($"Novel Id ={novelResponse.Id}");
+                Console.Write($"Novel Title ={novelResponse.Title}");
+                Console.Write($"Novel Author ={novelResponse.Author}");
+                Console.Write($"Novel Year={novelResponse.Year}");
+                Console.Write($"Novel Writer={novelResponse.Writer}");
             } catch (Exception e){
                 Console.WriteLine(e.Message);
             }
         }
-        if(choice != null && choice == "B"){
+        else if(choice == "B"){
             try{
                 Console.WriteLine("insert the magazine id");
                 string Id = Console.ReadLine();
-                _service.MagGetById(Id);
+                MagazineResponse magazineResponse = _service.MagGetById(Id);
+                Console.Write($"Magazine Id ={magazineResponse.Id}");
+                Console.Write($"Magazine Title ={magazineResponse.Title}");
+                Console.Write($"Magazine Author ={magazineResponse.Author}");
+                Console.Write($"Magazine Year ={magazineResponse.Year}");
             } catch (Exception e){
                 Console.WriteLine(e.Message);
             }
