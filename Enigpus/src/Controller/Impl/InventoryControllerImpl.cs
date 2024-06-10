@@ -73,6 +73,7 @@ class InventoryControllerImpl : INventoryControllerInterface
             Console.Write($"Book Author ={book.Author}");
             Console.Write($"Book Year={book.Year}");
             Console.Write($"Book Writer={book.Writer}");
+            Console.WriteLine("\n");
         });
     }
 
@@ -85,6 +86,7 @@ class InventoryControllerImpl : INventoryControllerInterface
             Console.Write($"Magazine Title ={magazine.Title}");
             Console.Write($"Magazine Author ={magazine.Author}");
             Console.Write($"Magazine Year ={magazine.Year}");
+            Console.WriteLine("\n");
         });
     }
         else {
@@ -104,6 +106,7 @@ class InventoryControllerImpl : INventoryControllerInterface
                 Console.Write($"Novel Author ={novelResponse.Author}");
                 Console.Write($"Novel Year={novelResponse.Year}");
                 Console.Write($"Novel Writer={novelResponse.Writer}");
+                Console.WriteLine("\n");
             } catch (Exception e){
                 Console.WriteLine(e.Message);
             }
@@ -117,6 +120,7 @@ class InventoryControllerImpl : INventoryControllerInterface
                 Console.Write($"Magazine Title ={magazineResponse.Title}");
                 Console.Write($"Magazine Author ={magazineResponse.Author}");
                 Console.Write($"Magazine Year ={magazineResponse.Year}");
+                Console.WriteLine("\n");
             } catch (Exception e){
                 Console.WriteLine(e.Message);
             }
