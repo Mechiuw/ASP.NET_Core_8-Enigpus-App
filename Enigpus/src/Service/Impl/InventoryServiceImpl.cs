@@ -8,8 +8,8 @@ class InventoryServiceImpl : INventoryService
 
     public InventoryServiceImpl()
     {
-        this._magazineRepo = [];
-        this._novelRepo = [];
+        _magazineRepo = new List<Magazine>();
+        _novelRepo = new List<Novel>();
     }
 
     public List<Novel> NovelRepo
@@ -59,7 +59,7 @@ class InventoryServiceImpl : INventoryService
 
     public List<Novel> GetAll()
     {
-        return [.. _novelRepo];
+        return new List<Novel>(_novelRepo);
     }
 
     public NovelResponse Update(string Id,NovelRequest novelRequest)
@@ -127,7 +127,7 @@ class InventoryServiceImpl : INventoryService
     }
 
     public List<Magazine> MagGetAll(){
-        return [.. _magazineRepo];
+        return new List<Magazine>(_magazineRepo);
     }
 
     public MagazineResponse MagUpdate(string Id,MagazineRequest magazineRequest){
