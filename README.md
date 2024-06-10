@@ -20,6 +20,11 @@ This project is a console-based Library Book Management Application written in C
 - **Search Books**: Search for books by title, author, or ISBN.
 - **List All Books**: Display a list of all books in the library.
 
+## User allowed features
+- **Add New Books**
+- **Search Books**
+- **List All Books**
+
 ## Prerequisites
 
 - .NET Core SDK 8.0
