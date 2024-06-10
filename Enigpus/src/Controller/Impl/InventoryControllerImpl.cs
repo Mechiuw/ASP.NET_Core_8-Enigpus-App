@@ -2,9 +2,9 @@ class InventoryControllerImpl : INventoryControllerInterface
 {
     private readonly INventoryService _service;
 
-    public InventoryControllerImpl(INventoryService _service)
+    public InventoryControllerImpl(INventoryService service)
     {
-        _service = _service ?? throw new ArgumentNullException(nameof(_service));
+        _service = service ?? throw new ArgumentNullException(nameof(service));
     }
     public void AddBook(string choice)
     {
@@ -28,9 +28,10 @@ class InventoryControllerImpl : INventoryControllerInterface
                     Year,
                     Writer
                 );
-                _service.Create(novelRequest);
+                NovelResponse novelResponse = _service.Create(novelRequest);
+                novelResponse.ToString();
             } catch (Exception e){
-                Console.WriteLine(e.Data);
+                Console.WriteLine(e.Message);
             }
         } else if (choice == "B"){
             try{
@@ -51,7 +52,7 @@ class InventoryControllerImpl : INventoryControllerInterface
                 );
                 _service.MagCreate(magazineRequest);
             } catch (Exception e){
-                Console.WriteLine(e.Data);                                      
+                Console.WriteLine(e.Message);                                      
             }
         } else {
             throw new Exception(String.Format("wrong input : {0}",choice));
@@ -60,13 +61,30 @@ class InventoryControllerImpl : INventoryControllerInterface
 
     public void GetAllBook(string choice)
     {
-        if(choice != null && choice == "A"){
-            _service.GetAll();
-        } 
+        if (choice == "A")
+    {
+        var books = _service.GetAll() ?? throw new Exception("GetAll() returned null");
+            books.ForEach(book =>
+        {
+            Console.WriteLine(book.Id);
+            Console.WriteLine(book.Title);
+            Console.WriteLine(book.Author);
+            Console.WriteLine(book.Year);
+            Console.WriteLine(book.Writer);
+        });
+    }
 
-        if(choice != null && choice == "B"){
-            _service.MagGetAll();
-        }
+        else if (choice == "B")
+    {
+        var magazines = _service.MagGetAll() ?? throw new Exception("MagGetAll() returned null");
+            magazines.ForEach(magazine =>
+        {
+            Console.WriteLine(magazine.Id);
+            Console.WriteLine(magazine.Title);
+            Console.WriteLine(magazine.Author);
+            Console.WriteLine(magazine.Year);
+        });
+    }
         else {
             throw new Exception(String.Format("cant do with choice is empty"));
         }
@@ -80,7 +98,7 @@ class InventoryControllerImpl : INventoryControllerInterface
                 string Id = Console.ReadLine();
                 _service.GetById(Id);
             } catch (Exception e){
-                Console.WriteLine(e.Data);
+                Console.WriteLine(e.Message);
             }
         }
         if(choice != null && choice == "B"){
@@ -89,7 +107,7 @@ class InventoryControllerImpl : INventoryControllerInterface
                 string Id = Console.ReadLine();
                 _service.MagGetById(Id);
             } catch (Exception e){
-                Console.WriteLine(e.Data);
+                Console.WriteLine(e.Message);
             }
         } 
         else {
